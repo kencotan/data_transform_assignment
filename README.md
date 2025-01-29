@@ -24,6 +24,7 @@ Create queries to:
 2. Transform the data in staging, and
 3. Load the transformed results into the datamart.
 4. Create one table for each metric to be monitored!
+5. Additional points if you create daily partition table for table 1 and 2
 
 # Submission Guidelines
 1. Query/Script for extracting, transforming, and loading the data.
@@ -38,9 +39,9 @@ Create queries to:
 1. Slide title (include your name and assignment topic -> Data Transformation)
 2. Explanation of what ETL is and why ETL is important.
 3. Step for Extracting Data to the data warehouse.
-4. Step and explanation of what happens during the transformation of Metric 1.
-5. Step and explanation of what happens during the transformation of Metric 2.
-6. Step and explanation of what happens during the transformation of Metric 3.
-7. Step and explanation of what happens during the transformation of Metric 4.
+4. Step and explanation of what happens during the transformation of Table 1.
+5. Step and explanation of what happens during the transformation of Table 2.
+6. Step and explanation of what happens during the transformation of Table 3.
+7. Step and explanation of what happens during the transformation of Table 4.
 8. Conclusion of the entire process and closing remarks.
 9. Documentation: Query each table in the datamart to demonstrate the results of the ETL process.
