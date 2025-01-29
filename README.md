@@ -38,3 +38,5 @@ Buatlah 1 table untuk masing - masing metriks yang akan di monitor!
 5. Step dan penjelasan apa yang terjadi saat Transformasi metriks 2
 6. Step dan penjelasan apa yang terjadi saat Transformasi metriks 3
 7. Step dan penjelasan apa yang terjadi saat Transformasi metriks 4
+8. Kesimpulan dari seluruh proses, penutup
+9. Dokumentasi: Lakukan query ke setiap table yang ada di datamart untuk menunjukkan hasil dari ETL tersebut
