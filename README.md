@@ -1,42 +1,68 @@
-# data_transform_assignment
-Data Transformation Assignment Details
+# Data Transformation Assignment Details
 
-Suatu ecommerce memiliki data transaksi pembelian dengan detail sebagai berikut:
-1. waktu_pembelian 
-2. user_id -> ID user saat melakukan pembelian
-3. store_id -> ID penjual saat user melakukan pembelian
-4. barang_id -> ID barang yang dibeli
-5. jumlah_barang -> Jumlah barang yang dibeli dalam sekali transaksi
-6. harga_barang -> Harga barang per item yang dibeli
+An e-commerce platform has purchase transaction data with the following details:
 
-Kita diminta untuk membuat dashboard yang bisa memonitor beberapa metrics:
-1. Total transaksi per jam
-2. Total user yang melakukan pembelian per jam
-3. Jumlah barang terjual untuk setiap barang_id
-4. Jumlah barang terjual untuk setiap store_id
+waktu_pembelian (purchase_time)
 
-Sehingga diperlukan table summary yang berisi informasi tersebut.
+user_id -> ID of the user making the purchase
+
+store_id -> ID of the seller when the user makes the purchase
+
+barang_id (item_id) -> ID of the item purchased
+
+jumlah_barang (item_quantity) -> Quantity of items purchased in a single transaction
+
+harga_barang (item_price) -> Price per item purchased
+
+We are tasked with creating a dashboard to monitor the following metrics:
+
+Total transactions per hour
+
+Total users making purchases per hour
+
+Total items sold for each barang_id (item_id)
+
+Total items sold for each store_id
+
+Therefore, a summary table containing this information is required.
 
 # Objective
-Buatlah query untuk melakukan Extract data dari datawarehouse, Transform data di staging, dan Load hasil transformasi ke datamart.
-Buatlah 1 table untuk masing - masing metriks yang akan di monitor!
+Create queries to:
+
+Extract data from the data warehouse,
+
+Transform the data in staging, and
+
+Load the transformed results into the datamart.
+Create one table for each metric to be monitored!
 
 # Submission Guidelines
-1. Query/Script untuk melakukan extract, transform, dan load
-2. Buat slide presentation untuk menjelaskan detail dari setiap step yang terjadi, sertakan juga sedikit gambar.
-3. ZIP file jawaban dan submit melalui Learning Management System
+Query/Script for extracting, transforming, and loading the data.
 
-# Kriteria Penilaian
-1. Efisiensi query, pemilihan syntax, dan completeness dari keseluruhan proses
-2. Kejelasan dari penjelasan setiap step yang terjadi pada slide presentation
+Create a slide presentation to explain the details of each step, including some visuals.
 
-# Detail Slide
-1. Slide title (sertakan nama dan topik assignment -> Data Transformation)
-2. Penjelasan mengenai apa itu ETL dan mengapa ETL penting
-3. Step Extract Data ke data warehouse
-4. Step dan penjelasan apa yang terjadi saat Transformasi metriks 1
-5. Step dan penjelasan apa yang terjadi saat Transformasi metriks 2
-6. Step dan penjelasan apa yang terjadi saat Transformasi metriks 3
-7. Step dan penjelasan apa yang terjadi saat Transformasi metriks 4
-8. Kesimpulan dari seluruh proses, penutup
-9. Dokumentasi: Lakukan query ke setiap table yang ada di datamart untuk menunjukkan hasil dari ETL tersebut
+ZIP the answer files and submit them via the Learning Management System.
+
+# Evaluation Criteria
+Query efficiency, syntax selection, and completeness of the overall process.
+
+Clarity of explanations for each step in the slide presentation.
+
+Slide Details
+Slide title (include your name and assignment topic -> Data Transformation)
+
+Explanation of what ETL is and why ETL is important.
+
+Step for Extracting Data to the data warehouse.
+
+Step and explanation of what happens during the transformation of Metric 1.
+
+Step and explanation of what happens during the transformation of Metric 2.
+
+Step and explanation of what happens during the transformation of Metric 3.
+
+Step and explanation of what happens during the transformation of Metric 4.
+
+Conclusion of the entire process and closing remarks.
+
+Documentation: Query each table in the datamart to demonstrate the results of the ETL process.
