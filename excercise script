@@ -1,0 +1,98 @@
+CREATE SCHEMA stg_1;
+
+CREATE SCHEMA dwh_1;
+
+CREATE SCHEMA dm_1;
+
+CREATE TABLE IF NOT EXISTS public.data_diri (
+    id SERIAL PRIMARY KEY, 
+    nama VARCHAR(100) NOT NULL, 
+    tanggal_lahir TIMESTAMP NOT NULL, 
+    nomor_hp INTEGER NOT NULL, 
+    waktu_input TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    jenis_kelamin VARCHAR(10) NOT NULL 
+);
+
+-- Data input ke 1
+INSERT INTO data_diri (nama, tanggal_lahir, nomor_hp, jenis_kelamin)
+VALUES
+    ('John Doe', '1990-05-15 00:00:00', 123456, 'Laki-laki'),
+    ('Jane Smith', '1985-08-20 00:00:00', 123332, 'Perempuan'),
+    ('Alice Johnson', '1992-03-10 00:00:00', 123451, 'Perempuan'),
+    ('Bob Brown', '1988-11-25 00:00:00', 123768, 'Laki-laki');
+
+-- Data input ke 2
+INSERT INTO data_diri (nama, tanggal_lahir, nomor_hp, jenis_kelamin)
+VALUES
+    ('M Sur', '2005-05-15 00:00:00', 123456, ''),
+    ('Alejandro Garnacho', '3002-08-20 00:00:00', 123332, 'laki-laki');
+
+-- Data input ke 3
+INSERT INTO data_diri (nama, tanggal_lahir, nomor_hp, jenis_kelamin)
+VALUES
+    ('K K', '2009-05-15 00:00:00', 123456, 'perempuan');
+
+
+
+
+
+-- Step by Step ETL
+CREATE TABLE IF NOT EXISTS stg_1.data_diri AS 
+SELECT *, current_timestamp AS last_update FROM public.data_diri;
+
+TRUNCATE TABLE stg_1.data_diri;
+
+INSERT INTO stg_1.data_diri
+SELECT *, current_timestamp as last_update FROM public.data_diri;
+
+CREATE TABLE IF NOT EXISTS dwh_1.data_diri_transform (
+id SERIAL PRIMARY KEY,
+nama_depan VARCHAR(100) NOT NULL, 
+nama_belakang VARCHAR(100) NOT NULL, 
+waktu_input TIMESTAMP NOT NULL, 
+jenis_kelamin VARCHAR(10) NOT NULL ,
+umur INT NOT NULL,
+last_update TIMESTAMP NOT NULL
+);
+
+
+TRUNCATE dwh_1.data_diri_transform;
+
+INSERT INTO dwh_1.data_diri_transform 
+with step_1 as (
+SELECT 
+	id,
+	split_part(nama,' ',1) as nama_depan,
+	split_part(nama,' ',2) as nama_belakang,
+	waktu_input,
+	case 
+		when jenis_kelamin = 'Laki-laki' then '1'
+		when jenis_kelamin = 'Perempuan' then '2'
+		else '3' 
+	end as jenis_kelamin,
+	EXTRACT(year FROM age(current_timestamp,tanggal_lahir)) as umur,
+	last_update ,
+	row_number() over(partition by split_part(nama,' ',1), split_part(nama,' ',2), waktu_input order by last_update desc) as rn
+FROM 
+	stg_1.data_diri
+)
+
+SELECT id,nama_depan, nama_belakang, waktu_input, jenis_kelamin, umur, last_update
+FROM step_1
+where rn = 1
+;
+
+CREATE TABLE IF NOT EXISTS dm_1.data_user (
+id SERIAL PRIMARY KEY,
+nama_depan VARCHAR(100) NOT NULL, 
+nama_belakang VARCHAR(100) NOT NULL, 
+waktu_input TIMESTAMP NOT NULL, 
+jenis_kelamin VARCHAR(10) NOT NULL ,
+umur INT NOT NULL,
+last_update TIMESTAMP NOT NULL
+);
+
+TRUNCATE table dm_1.data_user;
+
+INSERT INTO dm_1.data_user
+SELECT * FROM dwh_1.data_diri_transform;
