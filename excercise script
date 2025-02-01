@@ -21,13 +21,13 @@ VALUES
     ('Alice Johnson', '1992-03-10 00:00:00', 123451, 'Perempuan'),
     ('Bob Brown', '1988-11-25 00:00:00', 123768, 'Laki-laki');
 
--- Data input ke 2
+-- Data input ke 2, masukkan data baru lalu coba running procedure
 INSERT INTO data_diri (nama, tanggal_lahir, nomor_hp, jenis_kelamin)
 VALUES
     ('M Sur', '2005-05-15 00:00:00', 123456, ''),
     ('Alejandro Garnacho', '3002-08-20 00:00:00', 123332, 'laki-laki');
 
--- Data input ke 3
+-- Data input ke 3, masukkan data baru lalu coba running procedure
 INSERT INTO data_diri (nama, tanggal_lahir, nomor_hp, jenis_kelamin)
 VALUES
     ('K K', '2009-05-15 00:00:00', 123456, 'perempuan');
