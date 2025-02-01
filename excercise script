@@ -34,8 +34,11 @@ VALUES
 
 
 
-
-
+-----------------------------------------
+CREATE OR REPLACE PROCEDURE dwh.generate_user()
+LANGUAGE plpgsql
+AS $procedure$
+BEGIN
 -- Step by Step ETL
 CREATE TABLE IF NOT EXISTS stg_1.data_diri AS 
 SELECT *, current_timestamp AS last_update FROM public.data_diri;
@@ -96,3 +99,12 @@ TRUNCATE table dm_1.data_user;
 
 INSERT INTO dm_1.data_user
 SELECT * FROM dwh_1.data_diri_transform;
+
+END;
+$procedure$;
+-----------------------------------------
+-- Script diatas juga membuat function bernama dwh.generate_user() yang jika di run, akan menjalankan semua function didalam procedure tersebut.
+-- Cara menjalankan procedure
+CALL dwh.generate_user()
+
+-- Coba tambahkan data baru, lalu jalankan running procedure, dan lihat hasil dari tabel di datamart!
