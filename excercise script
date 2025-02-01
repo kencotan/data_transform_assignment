@@ -33,7 +33,7 @@ VALUES
     ('K K', '2009-05-15 00:00:00', 123456, 'perempuan');
 
 
-
+-- Membuat function agar menjalankan seluruh function dalam suatu procedure
 -----------------------------------------
 CREATE OR REPLACE PROCEDURE dwh.generate_user()
 LANGUAGE plpgsql
